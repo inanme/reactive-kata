@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.sky'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+@Singleton
+class Versions {
+    final lombok = "1.18.20"
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${Versions.instance.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${Versions.instance.lombok}"
+    testCompileOnly "org.projectlombok:lombok:${Versions.instance.lombok}"
+    testAnnotationProcessor "org.projectlombok:lombok:${Versions.instance.lombok}"
+
+    implementation "org.springframework.boot:spring-boot-devtools"
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-cache"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+//    implementation("org.springframework.boot:spring-boot-starter-web") {
+//        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+//    }
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    implementation "org.springframework.kafka:spring-kafka:2.7.6"
+
+    testImplementation "io.projectreactor:reactor-test"
+    testImplementation "org.mockito:mockito-junit-jupiter"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.springframework.cloud:spring-cloud-contract-wiremock:3.0.3"
+
+    implementation "com.h2database:h2:1.4.198"
+    implementation "ch.qos.logback:logback-classic"
+    implementation "org.slf4j:slf4j-api"
+}
